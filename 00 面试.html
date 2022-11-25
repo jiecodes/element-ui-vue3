@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  保存用户登录状态 方法一  cookie(客户端记录状态) session(服务端记录状态)  (没有跨域问题 用这个) 
+                  方法二  token(维持状态)   跨域:vue项目运行在新的端口号 服务器与前端有跨域问题
+                  
+
+  页面登录 当用户登录信息正确后 获取到后台传递过来的token 通过sessionStorage把token保存到浏览器
+
+  用户通过url访问首页 登录首页 应该先访问登录页面   (路由守卫判断用户是否登录)  
+    路由守卫  router.beforeEach((to, from, next))   to:到那个页面  from:从那个页面出发  next:放行函数(放行到用户想要跳转到的地址) 方法一:next() 二:next('/login')
+    判断path(路径)值 如果你访问的是登录页 则return    不是访问的登录页,从sessionStorage获取保存的token值 
+    没有token值,强制跳转到登录页
+
+  退出
+    1 清空浏览器内存 token值     2 this.$router.push('/login') 跳转到登录页
+
+  通过axios请求数据 
+    axios.defaults.baseURL 设置请求头
+    把axios绑定的vue实例上  Vue.prototype.$http = axios      
+    使用: this.$http.get('login 请求的路径', this.请求的参数)
+
+  axios请求拦截  mian.js           请求拦截器、响应拦截器  
+    接口中除了登录接口外,其他请求接口都需要授权,授权就是 让登录接口请求到的token = 请求头字段 
+      (请求头字段Authorization = token)
+    目的: 为每一个请求接口添加一个 请求头字段(Authorization) 需要用到 axios请求拦截器添加token 
+
+
+  sessionStorage
+    把token保存到浏览器setItem  window.sessionStorage.setItem("token",res.data.token)  (用户登录)
+    查看(获取)浏览器是否有token  window.sessionStorage.getItem('token')                 (路由守卫判断用户是否登录,有token值)
+    清除 浏览器内部的token       window.sessionStorage.clear()                         (用户退出)
+
+
+  请求数据返回是 Promise    用 异步请求es6的 async和awiat     可以简化 Promise 直接返回打印的值
+  Promise里面有 cancel confirm俩个参数 使用async和await后 每次返回就返回对应的confirm或cancel
+
+
+  split分隔字符串成数组
+  array.from 字符串转化为数组
+
+
+  数值(1) + ' '(空字符串)  = 字符串 
+  定义好计算属性后 使用: this.定义好的计算属性名字
+
+</body>
+</html>

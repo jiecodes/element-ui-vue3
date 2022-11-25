@@ -1,0 +1,12 @@
+/* 本项目  整体的 有些样式在局部设置不起作用 */
+
+
+/* Add.vue */
+.el-step__title {
+  font-size: 13px !important;
+}
+.ql-editor {
+  min-height: 350px;
+}
+
+
