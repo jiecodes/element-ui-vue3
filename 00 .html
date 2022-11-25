@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  根据查看页面的类名修改样式,必须在全局样式修改,不然不生效。   base.css
+
+  div{$}*10  emmet语法
+
+  <template slot-scope="scope"></template>   {{scope.row.create_time}}    作用域插槽
+
+  结合api文档看项目
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // 定义全局 时间过滤器      padStart(2, '0')不足俩位,在前面补0      main.js
+  // 使用: 原数据 | dataFormat  {{scope.row.add_time | dataFormat}} 
+  Vue.filter('dataFormat', function(originValue) {
+  const date = new Date(originValue)
+
+  const y = date.getFullYear()
+  const m = (date.getMonth() + 1 + '').padStart(2, '0')
+  const d = (date.getDate() + '').padStart(2, '0')
+
+  const hh = (date.getHours() + '').padStart(2, '0')
+  const mm = (date.getMinutes() + '').padStart(2, '0')
+  const ss = (date.getSeconds() + '').padStart(2, '0')
+
+  // 模板字符串
+  // return `yyyy-mm-dd hh:mm:ss`
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
+
+
+</body>
+</html>
