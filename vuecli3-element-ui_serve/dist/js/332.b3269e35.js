@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvuecli2_element_ui"]=self["webpackChunkvuecli2_element_ui"]||[]).push([[332],{2332:function(e,u,l){l.r(u),l.d(u,{default:function(){return a}});var n=function(){var e=this,u=e._self._c;return u("div",{staticClass:"welcome"},[e._v(" 欢迎 ")])},t=[],c={},i=c,s=l(1001),r=(0,s.Z)(i,n,t,!1,null,null,null),a=r.exports}}]);
+//# sourceMappingURL=332.b3269e35.js.map

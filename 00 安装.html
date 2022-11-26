@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  esLint 检查是否规范(不安装) 
+
+  --save 运行时需要的插件
+  
+  安装element-ui      npm install element-ui --save (运行时依赖 没有--dev)
+  在main.js中引入
+    import ElementUi from 'element-ui'
+    import 'element-ui/lib/theme-chalk/index.css'
+    Vue.use(ElementUi)
+    页面测试 <el-button>11</el-button>
+
+  vue-table-with-tree-gird      categories.vue页面使用     树形控件       github.com上有
+    1 安装    npm install vue-table-with-tree-grid --save
+              npm install vue-table-with-tree-grid@0.2.4 --save
+    2 全局导入插件      main.js    import      
+    3 全局全局注册      main.js   Vue.component('tree-table', TreeTable)
+
+  vue-quill-editor            Add.vue 页面使用      富文本编辑器
+    1 安装    npm install vue-quill-editor --save
+    2 全局导入插件      main.js    import      
+    3 全局全局注册      main.js   Vue.use(VueQuillEditor)
+
+  lodash                        Add.vue 页面使用        深拷贝插件
+    1 安装            2022vue项目自带 lodash
+    2 add.vue 导入              import _ from 'lodash'      
+    3 使用     Add.js            const newAddGoodsForm = _.cloneDeep(this.AddGoodsForm)
+
+  echarts         Reports.vue                   使用了浅拷贝 object.assign
+    1 安装          npm install echarts --save
+    2 Reports.vue 导入           import * as echarts from 'echarts'
+    3 <el-card></el-card>中使用      <div id="main" style="width: 600px;height:400px;"></div>
+    4 mounted()中     1 初始化图表       var myChart = echarts.init(document.getElementById('main'));
+                      2 指定图表的配置项和数据
+                      3 使用刚指定的配置项和数据显示图表。
+
+
+
+  nprogress       main.js             项目优化 最上面有一个细进度条
+    1 安装            npm install nprogress --save
+    2 导入            import NProgress from 'nprogress'
+                      import 'nprogress/nprogress.css'
+    3 使用             在拦截器中使用 request
+                      展示进度条    NProgress.start()
+                      隐藏进度条    NProgress.done()
+
+  babel-plugin-transform-remove-console    build 打包时移除 console打印 开发阶段,打包阶段不打印 console    开发依赖 --dev
+    1 安装          npm install babel-plugin-transform-remove-console --save-dve
+    2 配置     babel.config.js        'transform-remove-console'
+              babel.config.js    配置  开发阶段可以打印 
+
+  externals   作用:减少js体积      通过externals加载外部cdn资源               vue.config.js
+    配置       b站 p200   index.html cdn导入
+
+  在开发模式下 首页自定制   index.html里面的title 添加上 dev -                               vue.config.js
+    1 在vue.config.js中      // 发布模式下 index.html text显示的文字
+                            config.plugin('html').tap(args => {
+                              args[0].isProd = true
+                              return args
+                            })
+                            // 开发模式下 index.html text显示的文字
+                            config.plugin('html').tap(args => {
+                              args[0].isProd = false
+                              return args
+                            })
+    2 在index.html中的title
+      开发模式下添加dev -  发布模式下不加 
+      <%= htmlWebpackPlugin.options.isProd ? '' : 'dev - ' %>
+  
+  路由按需加载
+
+  
+  线上部署   运行前先 npm install            vuecli3-element-ui_serve   http://127.0.0.1 的形式在本电脑运行起来
+    1 npm run build 打包项目
+    2 相同目录下创建文件(这个项目创建的是 vuecli3-element-ui_serve) 
+      1 初始化 包管理配置 npm init -y   
+      2 安装第三方的包    npm i express -S                     
+    3 vuecli3-element-ui_serve文件下 创建 app.js    写文app.js 代码后  测试是否成功  node .\app.js 打印
+    4 执行 http://127.0.0.1
+
+  线上部署后 继续优化  vuecli3-element-ui_serve文件下
+    开启gzip配置          作用: 减小文件体积,使传输速度更快
+    1 安装            npm i compression -S
+    2 在app.js写      const compression = require('compression')
+                      app.use(compression)
+   
+                      
+  
+
+
+    
+</body>
+</html>
